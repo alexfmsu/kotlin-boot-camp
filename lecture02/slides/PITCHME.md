@@ -51,7 +51,7 @@ We will using [ktlint](https://ktlint.github.io/) for our checkstyle.
 ktlint is checking formatting according to [set of rules](https://ktlint.github.io/#rules)
 
 
----?code=lecture02/src/main/kotlin/io/rybalkinsd/kotlinbootcamp/build.gradle.kts&title=Checkstyle. Configuration
+---?code=lecture02/build.gradle.kts&title=Checkstyle. Configuration
 @[19, 25](Setting ktlint configuration)
 @[29-35](Creating ktlint task)
 @[37-39](Adding check dependencie on ktlint task)
@@ -59,7 +59,7 @@ ktlint is checking formatting according to [set of rules](https://ktlint.github.
 
 ---
 @title[Checkstyle. Local config]
-![SAMBA Deployment](lecture02/slides/assets/images/ktlint_config.jpg)
+![](lecture02/slides/assets/images/ktlint_config.jpg)
 
 
 ---
@@ -69,16 +69,31 @@ ktlint is checking formatting according to [set of rules](https://ktlint.github.
 1. Classes and Types
 1. Assignment 2
 
+---
+@title[Practice. Functions]
+<!-- .slide: class="center" -->
+Implement functions in `io.rybalkinsd.kotlinbootcamp.practice.basics.kt`
+
+Fix all tests in `io.rybalkinsd.kotlinbootcamp.practice.BasicsTest.kt`
+
 
 ---?code=lecture02/src/main/kotlin/io/rybalkinsd/kotlinbootcamp/practice/basics.kt&title=Practice. Functions
 <!-- .slide: class="center" -->
+@[3-13](min)
+@[15-25](concat)
 
-@[4-14](min)
-@[17-27](concat)
 
-
----?code=lecture02/src/main/kotlin/io/rybalkinsd/kotlinbootcamp/practice/producer.kt&title=Practice 1. Functions. Producer
+---
+@title[Practice. Functions. Producer]
 <!-- .slide: class="center" -->
+Implement functions in `io.rybalkinsd.kotlinbootcamp.practice.producer.kt`
+
+Fix all tests in `io.rybalkinsd.kotlinbootcamp.practice.ProducerTest.kt`
+
+
+---?code=lecture02/src/main/kotlin/io/rybalkinsd/kotlinbootcamp/practice/producer.kt&title=Practice. Functions. Producer
+<!-- .slide: class="center" -->
+
 
 
 ---
@@ -89,21 +104,28 @@ ktlint is checking formatting according to [set of rules](https://ktlint.github.
 1. Assignment 2
 
 
----?code=lecture02/src/main/kotlin/io/rybalkinsd/kotlinbootcamp/point/Point1.kt&title=`class` declaration
+---?code=lecture02/src/main/java/io/rybalkinsd/kotlinbootcamp/point/PointJ.java&title=`class` declaration in java
+<!-- .slide: class="center" -->
+
+
+---?code=lecture02/src/main/kotlin/io/rybalkinsd/kotlinbootcamp/point/Point1.kt&title=`class` declaration in kotlin
 <!-- .slide: class="center" -->
 
 
 ---?code=lecture02/src/main/kotlin/io/rybalkinsd/kotlinbootcamp/point/Point2.kt&title=`class` default constructor and `init` block
 <!-- .slide: class="center" -->
 
+@[3](Default constructor)
 
 ---?code=lecture02/src/main/kotlin/io/rybalkinsd/kotlinbootcamp/point/Point3.kt&title=simplified `class` declaration
 <!-- .slide: class="center" -->
 
+@[3](Properties declaration)
 
 ---?code=lecture02/src/main/kotlin/io/rybalkinsd/kotlinbootcamp/point/Point.kt&title=`data class` declaration
 <!-- .slide: class="center" -->
 
+@[3](Adding `data class` features)
 
 ---?code=lecture02/src/main/kotlin/io/rybalkinsd/kotlinbootcamp/extension/pointExt.kt&title=`extension` declaration
 <!-- .slide: class="center" -->
@@ -111,6 +133,14 @@ ktlint is checking formatting according to [set of rules](https://ktlint.github.
 @[5](isZero extension)
 
 @[7](`copy` method usage)
+
+
+---
+@title[Comparing class declarations]
+
+#### See `io.rybalkinsd.kotlinbootcamp.point.PointsTest`
+
+Run all tests to find out what is the difference among the point declarations.
 
 
 ---
@@ -139,7 +169,10 @@ val ns: String? = null // <-- legal
 fun length(s: String?): Int? = s?.length
 ```
 
-`s?.length` is 
+`s?.length` 
+
+is
+ 
 `if(s != null) s.length else null`
 
 
@@ -152,7 +185,10 @@ val foo: Int?
 val bar: Int = foo ?: 42
 ```
 
-`foo ?: 42` is 
+`foo ?: 42` 
+
+is
+ 
 `if(foo != null) foo else 42`
 
 
@@ -180,7 +216,7 @@ val bar: Int = foo!!.length
 @title[Assignment 2]
 1. Fix tests in branch **assignment02** and push it to **your fork**  
 [[Github branch]](https://github.com/rybalkinsd/kotlin-boot-camp/tree/assignment02)
-[[Travis build]](https://travis-ci.org/rybalkinsd/kotlin-boot-camp/builds/204177834)
+[[Travis build]](https://travis-ci.org/rybalkinsd/kotlin-boot-camp/)
 2. Make pull request to the [**course repository**](https://github.com/rybalkinsd/kotlin-boot-camp)  
 (from your branch **assignment02** to ours **assignment02**)
 3. Write your **first name** and **family name** in description of pull request

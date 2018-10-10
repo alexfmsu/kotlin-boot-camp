@@ -1,7 +1,7 @@
 # kotlin-boot-camp
 kotlin course materials
 
-[![](http://icons.iconarchive.com/icons/alecive/flatwoken/32/Apps-Telegram-icon.png) Join chat](https://t.me/joinchat/AAISfEea7uAktmNMqKiJmw) - feel free to contact us 
+![](http://icons.iconarchive.com/icons/alecive/flatwoken/32/Apps-Telegram-icon.png) Join chat- Coming soon
 
 ## Content
 1. [About this course](https://github.com/rybalkinsd/kotlin-boot-camp/blob/master/info/about.md)
@@ -16,3 +16,4 @@ kotlin course materials
 1. Slides
 	1. [Lecture 1](https://gitpitch.com/rybalkinsd/kotlin-boot-camp/master?grs=github&t=white&p=lecture01/slides#/). Introduction #1
 	1. [Lecture 2](https://gitpitch.com/rybalkinsd/kotlin-boot-camp/master?grs=github&t=white&p=lecture02/slides#/). Introduction #2
+    1. [Lecture 3](https://gitpitch.com/rybalkinsd/kotlin-boot-camp/lecture03?grs=github&t=white&p=lecture03/slides#/). OOP & friends
