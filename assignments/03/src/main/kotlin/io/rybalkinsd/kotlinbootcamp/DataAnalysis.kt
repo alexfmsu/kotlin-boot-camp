@@ -21,23 +21,20 @@ sealed class Profile(
  * Declare classes for all data sources
  */
 class FacebookProfile(id: Long) : Profile(dataSource = DataSource.FACEBOOK, id = id)
+class VKProfile(id: Long) : Profile(dataSource = DataSource.VK, id = id)
+class LinkedInProfile(id: Long) : Profile(dataSource = DataSource.LINKEDIN, id = id)
 
-/**
- * Task #2
- * Find the average age for each datasource (for profiles that has age)
- *
- * TODO
- */
-val avgAge: Map<DataSource, Double> = emptyMap()
+class ProfileID {
+    companion object {
+        fun generate(): Long {
+            IDs.add(counter)
+            return counter++
+        }
 
-/**
- * Task #3
- * Group all user ids together with all profiles of this user.
- * We can assume users equality by : firstName & lastName & age
- *
- * TODO
- */
-val groupedProfiles: Map<Long, List<Profile>> = emptyMap()
+        private var counter: Long = 0
+        private val IDs = mutableListOf<Long>()
+    }
+}
 
 /**
  * Here are Raw profiles to analyse
@@ -97,3 +94,63 @@ val rawProfiles = listOf(
             """.trimIndent()
     )
 )
+
+val profiles = getProfiles(rawProfiles)
+
+fun getProfileFromData(input: RawProfile): Profile {
+    val data = input.rawData.toLowerCase()
+    val profile = when (data[input.rawData.indexOf("source=") + 7]) {
+        'v' -> VKProfile(ProfileID.generate())
+        'f' -> FacebookProfile(ProfileID.generate())
+        else -> LinkedInProfile(ProfileID.generate())
+    }
+    for (x in data.replace("\n", "").split(',')) {
+        when (x.substringBefore('=')) {
+            "firstname" -> profile.firstName = x.substringAfter('=')
+            "lastname" -> profile.lastName = x.substringAfter('=')
+            "age" -> profile.age = try {
+                x.substringAfter('=').toInt()
+            } catch (e: IllegalArgumentException) {
+                null
+            }
+        }
+    }
+    return profile
+}
+
+fun getProfiles(input: List<RawProfile>): List<Profile> {
+    val profiles = mutableListOf<Profile>()
+    input.forEach { profiles += getProfileFromData(it) }
+    return profiles
+}
+
+/**
+ * Task #2
+ * Find the average age for each datasource (for profiles that has age)
+ */
+fun DataSource.makeAvg(): Pair<DataSource, Double> {
+    var aged_count = profiles.count { it.dataSource == this }
+    var avg = 0
+    for (profile in profiles) {
+        if (profile.dataSource == this) {
+            if (profile.age == null)
+                aged_count--
+            avg += profile.age ?: 0
+        }
+    }
+    return Pair(this, avg.toDouble() / aged_count)
+}
+
+val avgAge: Map<DataSource, Double> = mapOf(
+        DataSource.FACEBOOK.makeAvg(),
+        DataSource.LINKEDIN.makeAvg(),
+        DataSource.VK.makeAvg()
+)
+
+/**
+ * Task #3
+ * Group all user ids together with all profiles of this user.
+ * We can assume users equality by : firstName & lastName & age
+ */
+val groupedProfiles: Map<Long, List<Profile>> =
+        profiles.associate { it.id to profiles.fold(arrayListOf<Profile>()) { group, profile -> if (profile.id == it.id) group.add(profile); group } }
