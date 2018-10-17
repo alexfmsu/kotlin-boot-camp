@@ -46,7 +46,15 @@ class ChatController {
             method = [RequestMethod.GET],
             produces = [MediaType.TEXT_PLAIN_VALUE]
     )
-    fun online(): ResponseEntity<String> = TODO()
+    fun online() {
+    // fun online(): ResponseEntity<String> : ResponseEntity<String> {
+        usersOnline.forEach { 
+            key, value -> println("$key = $value") 
+        }
+        
+        // var ResponseEntity.ok("sds")
+        // return ResponseEntity
+   }
 
     /**
      * curl -X POST -i localhost:8080/chat/logout -d "name=MY_NAME"
